@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% block custom-title %}Coffee Castle | Accommodation{% endblock %}
+
+{% block pre-content %}
+
+	<div id="page-header" style="background:url(/static/images/example_image_06.png) no-repeat top center;">
+		<h2>{{ room_detail.title }}</h2>
+	</div>
+
+{% endblock %}
+
+{% block content %}
+
+<!-- BEGIN .main-content -->
+			<div class="main-content left-main-content">
+
+				<!-- BEGIN .slider -->
+				<div class="slider accommodation-slider">
+					<ul class="slides">
+						<li>
+							<img src="https://s3-ap-southeast-1.amazonaws.com/coorgcastle/IMG-20150624-WA0002.jpg" alt="" />
+						</li>
+						<li>
+							<img src="https://s3-ap-southeast-1.amazonaws.com/coorgcastle/IMG-20150624-WA0005.jpg" alt="" />
+						</li>
+						<li>
+							<img src="https://s3-ap-southeast-1.amazonaws.com/coorgcastle/IMG-20150624-WA0006.jpg" alt="" />
+						</li>
+						<li>
+							<img src="https://s3-ap-southeast-1.amazonaws.com/coorgcastle/IMG-20150624-WA0007.jpg" alt="" />
+						</li>
+
+					</ul>
+				<!-- END .slider -->
+				</div>
+
+				<div class="page-content">
+					<h3 class="title-style1">Room Description<span class="title-block"></span></h3>
+					<p>{{ room_detail.description }}</p>
+				</div>
+
+				<hr class="space1" />
+<!--
+				<div id="tabs">
+					<ul class="nav clearfix">
+						<li><a href="#tabs-tab-title-1">Room Overview</a></li> -->
+<!-- 						<li><a href="#tabs-tab-title-2">Floor Plan</a></li>
+						<li><a href="#tabs-tab-title-3">Room Rates</a></li> -->
+<!-- 					</ul>
+
+					<div id="tabs-tab-title-1" class="page-content">
+
+						<table>
+							<tbody>
+								<tr>
+									<td data-title="Column 1"><strong>Bed:</strong> {{ room_detail.bed_type }}</td>
+									<td data-title="Column 1"><strong>Free Internet:</strong> {{ room_detail.free_internet }}</td>
+								</tr>
+								<tr>
+									<td data-title="Column 2"><strong>Occupancy:</strong> {{ room_detail.no_of_persons }}</td>
+									<td data-title="Column 2"><strong>Breakfast Included:</strong> {{ room_detail.breakfast_included }}</td>
+								</tr>
+								<tr>
+									<td data-title="Column 3"><strong>Size:</strong> {{ room_detail.size_of_room }}</td>
+									<td data-title="Column 3"><strong>Gym Access:</strong> {{ room_detail.gym_access }}</td>
+								</tr>
+								<tr>
+									<td data-title="Column 4"><strong>View:</strong> {{ room_detail.view }}</td>
+									<td data-title="Column 4"><strong>Free Airport Pickup:</strong> {{ room_detail.free_internet }}</td>
+								</tr>
+								<tr>
+									<td data-title="Column 5"><strong>Ensuite Bathroom:</strong> {{ room_detail.ensuite_bathroom }}</td>
+									<td data-title="Column 5"><strong>Room Service:</strong> {{ room_detail.room_service }}</td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div> -->
+
+					<!-- <div id="tabs-tab-title-2" class="page-content"><p>Ut bibendum ullamcorper tortor, eget aliquet odio facilisis quis. Nulla interdum aliquet scelerisque. Curabitur ante metus, laoreet eu convallis a, tristique a arcu.</p><img src="/site_media/images/floorplan.png" class="respond-img" alt="" /></div>
+					<div id="tabs-tab-title-3" class="page-content"><p>Ut bibendum ullamcorper tortor, eget aliquet odio facilisis quis. Nulla interdum aliquet scelerisque. Curabitur ante metus, laoreet eu convallis a, tristique a arcu. Donec id erat sed lectus congue tempor</p></div>
+				</div>
+-->
+
+			<!-- END .main-content -->
+			</div>
+
+			<!-- BEGIN .sidebar -->
+			<div class="sidebar right-sidebar">
+
+				<!-- BEGIN .widget -->
+				<div class="widget">
+
+					<h4 class="title-style3">Reservation<span class="title-block"></span></h4>
+
+					<!-- BEGIN .widget-reservation-box -->
+					<div class="widget-reservation-box">
+
+						<form role='form' class="booking-form" id="availabilityform" action="{% url 'availability' %}" method="POST">
+						{% csrf_token %}
+		<!-- 					<div class="room-price-widget">
+								<p class="from">Room From</p>
+								<h3 class="price">Rs.{{ room_detail.room_rate }}/.</h3>
+								<p class="price-detail">Per Night</p>
+							</div> -->
+
+							<input type="text" id="name" name="name" placeholder="Name:" style="color:#111111" required>
+							<input type="text" id="phone" name="phone" placeholder="Phone No:" style="color:#111111" required>
+							<input type="email" id="email" name="email" placeholder="Email ID:" style="color:#111111" required >
+							<input type="text" id="checkin" name="checkin" placeholder="Check In" class="datepicker" style="color:#111111" required>
+							<input type="text" id="checkout" name="checkout" placeholder="Check Out" class="datepicker" style="color:#111111" required>
+							<textarea rows="4" cols="22" id="message" name="message" Placeholder="Please leave a detailed message"></textarea>
+
+							<!-- <div class="select-wrapper">
+								<select id="adults" name="book_room_adults">
+									<option value="none">Adults</option>
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+							</div>
+
+							<div class="select-wrapper">
+								<select id="children" class="styled" name="book_room_children">
+									<option value="none">Children</option>
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+							</div> -->
+
+							<input id="availability-submit" class="bookbutton" type="submit" value="Check Availability" />
+
+						</form>
+
+					<!-- END .widget-reservation-box -->
+					</div>
+
+				<!-- END .widget -->
+				</div>
+
+				<!-- BEGIN .widget -->
+				<div class="widget">
+
+					<h4 class="title-style3">Contact Details<span class="title-block"></span></h4>
+
+					<ul class="contact_details_list">
+						<li class="phone_list"><strong>Phone:</strong> {{ resort_detail.phone }}</li>
+						<li class="email_list"><strong>Email:</strong> {{ resort_detail.email }}</li>
+					</ul>
+
+				<!-- END .widget -->
+				</div>
+
+			<!-- END .sidebar -->
+			</div>
+
+<script type="text/javascript" src="/site_media/js/jquery-1.9.1.js"></script>
+<script type="text/javascript">
+	$( document ).ready(function() {
+		$('ul#navigation li').removeClass('current-menu-item current_page_item');
+		$('ul#navigation li#accommodation').addClass('current-menu-item current_page_item');
+	});
+	$('#availabilityform').submit(function(event) {
+		event.preventDefault();
+		var form = $('#availabilityform');
+		var url = form.attr( "action" );
+		$('#availability-submit').prop("disabled", true);
+		$.ajax({
+			type: 'POST',
+			url: url,
+			dataType: 'json',
+			data: form.serialize(),
+			success: function ( result ) {
+				if ( result ) {
+					alert('We received your booking request. We will get back to you soon!');
+					$('#availability-submit').prop("disabled", false);
+					$('#availabilityform')[0].reset();
+				}
+				else {
+					alert('There was a problem with the data entered. Please check');
+					$('#availability-submit').prop("disabled", false);
+				}
+			}
+		});
+	});
+</script>
+
+{% endblock %}

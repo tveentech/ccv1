@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html dir="ltr" lang="en-US" class="ie6"> <![endif]-->
+<!--[if IE 7]>    <html dir="ltr" lang="en-US" class="ie7"> <![endif]-->
+<!--[if IE 8]>    <html dir="ltr" lang="en-US" class="ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html dir="ltr" lang="en-US"> <!--<![endif]-->
+
+<!-- BEGIN head -->
+<head>
+
+	<!--Meta Tags-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<!-- Title -->
+	<title>{% block custom-title %}Coffee Castle{% endblock %}</title>
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="/site_media/css/style.css" type="text/css"  media="all" />
+	<link rel="stylesheet" href="/site_media/css/colours/goldblack.css" type="text/css"  media="all" />
+	<link rel="stylesheet" href="/site_media/css/flexslider.css" type="text/css"  media="all" />
+	<link rel="stylesheet" href="/site_media/css/superfish.css" type="text/css"  media="all" />
+	<link rel="stylesheet" href="/site_media/css/prettyPhoto.css" type="text/css"  media="all" />
+	<link rel="stylesheet" href="/site_media/css/responsive.css" type="text/css"  media="all" />
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,700,900' rel='stylesheet' type='text/css'>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+	<!-- JavaScript (must go in header) -->
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+	<!-- JavaScript For IE -->
+
+	<!--[if (gte IE 6)&(lte IE 8)]>
+		<script type="text/javascript" src="/site_media/js/selectivizr-min.js"></script>
+	<![endif]-->
+
+<!-- END head -->
+</head>
+
+<!-- BEGIN body -->
+<body class="loading">
+
+	<!-- BEGIN #background-wrapper -->
+	<div id="background-wrapper">
+
+	<!-- BEGIN #wrapper -->
+	<div id="wrapper">
+
+		<!-- BEGIN #header-gmap -->
+		<div id="header-gmap">
+
+			<div id="map-canvas"></div>
+
+		<!-- END #header-gmap -->
+		</div>
+
+		<!-- BEGIN #topbar -->
+		<div id="topbar">
+
+			<!-- #topbar-wrapper -->
+			<div id="topbar-wrapper" class="clearfix">
+
+				<!-- BEGIN .topbar-left -->
+				<div class="topbar-left">
+
+					<a href="#" class="gmap-button"></a>
+
+				<!-- END .topbar-left -->
+				</div>
+
+				<!-- BEGIN .topbar-right -->
+				<div class="topbar-right clearfix">
+
+					<a href="{% url 'contact_us' %}" class="button0">Book Now</a>
+
+					<!-- <ul id="language-selection">
+						<li><a href="#">English</a>
+							<ul class="submenu">
+								<li><a href="#">French</a></li>
+								<li><a href="#">German</a></li>
+								<li><a href="#">Italian</a></li>
+							</ul>
+						</li>
+					</ul> -->
+
+					<ul class="header-contact">
+						<li class="phone_icon">{{ resort_detail.phone }}</li>
+						<li class="email_icon"><a href="mailto:{{ resort_detail.email }}">{{ resort_detail.email }}</a></li>
+					</ul>
+
+				<!-- END .topbar-right -->
+				</div>
+
+			<!-- END #topbar-right -->
+			</div>
+
+		<!-- END #topbar -->
+		</div>
+
+		<div role="banner">
+
+			<!-- BEGIN .content-wrapper -->
+			<div class="content-wrapper clearfix">
+
+				<!-- BEGIN #logo -->
+				<div id="logo" style="width:270px" >
+					<img src="https://s3-ap-southeast-1.amazonaws.com/coorgcastle/rsz_1rsz_coffeecastle.jpg" align="left" >
+					<h1 style="padding-top: 10px; text-align: right;" >
+						<a href="{% url 'index' %}">Coffee Castle</a>
+						<!-- <span style="width:270px " >A Boutique Resort</span> -->
+						<span style="width:270px " >Coorg By Nature</span>
+					</h1>
+				<!-- END #logo -->
+				</div>
+
+				<!-- .main-navigation -->
+				<nav class="main-navigation">
+
+					<ul id="navigation">
+						<li id="index" class=""><a href="{% url 'index' %}"><strong>Home<span>welcome</span></strong></a>
+<!-- 							<ul>
+								<li><a href="index.html">Home I</a></li>
+								<li><a href="index2.html">Home II</a></li>
+								<li><a href="index3.html">Home III</a></li>
+								<li><a href="index4.html">Home IV</a></li>
+								<li><a href="index5.html">Home V</a></li>
+								<li><a href="index6.html">Home VI</a></li>
+							</ul> -->
+						</li>
+						<li id="accommodation" ><a href="javascript:;"><strong>Accommodation<span>rates &amp; reservation</span></strong></a>
+							<ul class="sub-menu">
+								{% for room_type in room_types %}
+									<li><a href="{% url 'accommodation' room_type.id  %}"value="{{ room_type.id }}">{{ room_type.title }}</a></li>
+								{% endfor %}
+							</ul>
+						</li>
+						<li id="activities" ><a href="{% url 'activities' %}"><strong>Activities<span>Fun & Adventure</span></strong></a>
+							<!-- <ul class="sub-menu">
+								<li><a href="accommodation.html">Accommodation</a>
+									<ul>
+										<li><a href="accommodation-single.html">Accommodation Single</a></li>
+									</ul>
+								</li>
+								<li><a href="blog.html">Blog</a>
+									<ul>
+										<li><a href="blog-single.html">Blog Single</a></li>
+									</ul>
+								</li>
+								<li><a href="events.html">Events</a>
+									<ul>
+										<li><a href="events-single.html">Events Single</a></li>
+									</ul>
+								</li>
+								<li><a href="testimonials.html">Testimonials</a>
+									<ul>
+										<li><a href="testimonials-single.html">Testimonials Single</a></li>
+									</ul>
+								</li>
+								<li><a href="booking1.html">Booking</a>
+									<ul>
+										<li><a href="booking1.html">Booking Step 1</a></li>
+										<li><a href="booking2.html">Booking Step 2</a></li>
+										<li><a href="booking3.html">Booking Step 3</a></li>
+										<li><a href="booking4.html">Booking Step 4</a></li>
+									</ul>
+								</li>
+								<li><a href="contact.html">Contact</a></li>
+								<li><a href="left-sidebar.html">Left Sidebar</a></li>
+								<li><a href="right-sidebar.html">Right Sidebar</a></li>
+								<li><a href="full-width.html">Full Width</a></li>
+								<li><a href="js-elements.html">JS Elements</a></li>
+								<li><a href="typography.html">Typography</a></li>
+							</ul> -->
+						</li>
+						<!-- <li><a href="events.html"><strong>Occasions<span>upcoming events</span></strong></a></li> -->
+						<li id="contact_us" ><a href="{% url 'contact_us' %}"><strong>Contact Us<span>get in touch</span></strong></a></li>
+					</ul>
+
+				<!-- .main-navigation -->
+				</nav>
+
+				<!-- BEGIN .mobile-menu-wrapper -->
+				<div class="mobile-menu-wrapper clearfix">
+					<div class="mobile-menu-button"></div>
+					<div class="mobile-menu-title">Navigation</div>
+
+					<!-- mobile-menu-inner -->
+					<div class="mobile-menu-inner">
+						<ul id="mobile-menu">
+							<li class="current-menu-item current_page_item"><a href="{% url 'index' %}">Home</a>
+								<!-- <ul>
+									<li><a href="index.html">Home I</a></li>
+									<li><a href="index2.html">Home II</a></li>
+									<li><a href="index3.html">Home III</a></li>
+									<li><a href="index4.html">Home IV</a></li>
+									<li><a href="index5.html">Home V</a></li>
+									<li><a href="index6.html">Home VI</a></li>
+								</ul> -->
+							</li>
+							<li><a href="javascript:;">Accommodation</a>
+								<ul class="sub-menu">
+									{% for room_type in room_types %}
+										<li>
+											<a href="{% url 'accommodation' room_type.id  %}"value="{{ room_type.id }}">{{ room_type.title }}</a>
+										</li>
+									{% endfor %}
+								</ul>
+							</li>
+							<li><a href="{% url 'activities' %}">Activities</a>
+								<!-- <ul class="sub-menu">
+									<li><a href="accommodation.html">Accommodation</a>
+										<ul>
+											<li><a href="accommodation-single.html">Accommodation Single</a></li>
+										</ul>
+									</li>
+									<li><a href="blog.html">Blog</a>
+										<ul>
+											<li><a href="blog-single.html">Blog Single</a></li>
+										</ul>
+									</li>
+									<li><a href="events.html">Events</a>
+										<ul>
+											<li><a href="events-single.html">Events Single</a></li>
+										</ul>
+									</li>
+									<li><a href="testimonials.html">Testimonials</a>
+										<ul>
+											<li><a href="testimonials-single.html">Testimonials Single</a></li>
+										</ul>
+									</li>
+									<li><a href="booking1.html">Booking</a>
+										<ul>
+											<li><a href="booking1.html">Booking Step 1</a></li>
+											<li><a href="booking2.html">Booking Step 2</a></li>
+											<li><a href="booking3.html">Booking Step 3</a></li>
+											<li><a href="booking4.html">Booking Step 4</a></li>
+										</ul>
+									</li>
+									<li><a href="contact.html">Contact</a></li>
+									<li><a href="left-sidebar.html">Left Sidebar</a></li>
+									<li><a href="right-sidebar.html">Right Sidebar</a></li>
+									<li><a href="full-width.html">Full Width</a></li>
+									<li><a href="js-elements.html">JS Elements</a></li>
+									<li><a href="typography.html">Typography</a></li>
+								</ul> -->
+							</li>
+							<!-- <li><a href="events.html">Occasions</a></li> -->
+							<li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+						<!-- END #main-menu -->
+						</ul>
+					<!-- mobile-menu-inner -->
+					</div>
+
+				<!-- END .mobile-menu-wrapper -->
+				</div>
+
+			<!-- END .content-wrapper -->
+			</div>
+
+		</div>
+		{% block pre-content %}{% endblock %}
+
+		<!-- BEGIN .content-wrapper -->
+		<div class="content-wrapper clearfix">
+		{% block content %}{% endblock %}
+		<!-- END .content-wrapper -->
+		</div>
+
+		<!-- BEGIN #footer -->
+		<div id="footer">
+
+			<!-- BEGIN .content-wrapper -->
+			<div class="content-wrapper clearfix">
+
+				<!-- BEGIN .one-fourth
+				<div class="one-fourth">
+					<h4 class="title-style2">Flickr Stream<span class="title-block"></span></h4>
+					<div class="flickr_badge_wrapper clearfix">
+						<script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=6&amp;flickr_display=latest&amp;size=s&amp;layout=x&amp;source=user&amp;user=65744139@N04"></script>
+					</div>
+				</div>
+				END .one-fourth -->
+
+				<!-- BEGIN .one-fourth
+				<div class="one-fourth">
+					<h4 class="title-style2">Latest Tweets<span class="title-block"></span></h4>
+					<ul class="twitter-feed">
+						<li><a href="#">@Proin</a> imperdiet adipiscing elit ac fermentum nullam et<span>about 6 hours ago</span></li>
+						<li><a href="#">@Proin</a> imperdiet adipiscing elit ac fermentum nullam et<span>about 6 hours ago</span></li>
+					</ul>
+				</div>
+				END .one-fourth -->
+
+				<!-- BEGIN .one-fourth
+				<div class="one-fourth">
+					<h4 class="title-style2">Newsletter<span class="title-block"></span></h4>
+					<p>Quisque bibendum erat feugiat rhoncus tincidunt ipsum.</p>
+					<form action="#" method="post">
+						<input class="nsu-field" type="text" name="newsletter_email" value="" />
+						<input type="submit" class="button1" name="submit" value="Subscribe" />
+					</form>
+				</div>
+				END .one-fourth -->
+
+				<!-- BEGIN .one-fourth
+				<div class="one-fourth last-col">
+					<h4 class="title-style2">Social Media<span class="title-block"></span></h4>
+					<ul class="social-icons clearfix">
+						<li><a target="_blank" href="#"><span class="facebook-icon"></span></a></li>
+						<li><a target="_blank" href="#"><span class="twitter-icon"></span></a></li>
+						<li><a target="_blank" href="#"><span class="pinterest-icon"></span></a></li>
+						<li><a target="_blank" href="#"><span class="gplus-icon"></span></a></li>
+						<li><a target="_blank" href="#"><span class="linkedin-icon"></span></a></li>
+				</div>
+				END .one-fourth -->
+
+				<div class="clearboth"></div>
+
+				<!-- BEGIN #footer-bottom -->
+				<div id="footer-bottom" class="clearfix">
+
+					<p class="fl">&copy; 2015 Coffee Castle. All Rights Reserved</p>
+
+					<nav class="secondary-navigation">
+						<ul class="fr">
+							<li><a href="{% url 'activities' %}">Activities</a><span>/</span></li>
+							<li><a href="{% url 'contact_us' %}">Book Now</a><span>/</span></li>
+							<li><a href="{% url 'contact_us' %}">Directions &amp; Map</a><span>/</span></li>
+						</ul>
+					</nav>
+
+				<!-- END #footer-bottom -->
+				</div>
+
+			<!-- END .content-wrapper -->
+			</div>
+
+		<!-- END #footer -->
+		</div>
+
+	<!-- END #wrapper -->
+	</div>
+
+	<!-- END #background-wrapper -->
+	</div>
+
+	<!-- JavaScript -->
+	<script type="text/javascript" src="/site_media/js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="/site_media/js/jquery-ui.js"></script>
+	<script type="text/javascript" src="/site_media/js/superfish.js"></script>
+	<script type="text/javascript" src="/site_media/js/jquery.flexslider-min.js"></script>
+	<script type="text/javascript" src="/site_media/js/jquery.prettyPhoto.js"></script>
+	<script type="text/javascript" src="/site_media/js/gmap.js"></script>
+	<script type="text/javascript" src="/site_media/js/scripts.js"></script>
+
+<!-- END body -->
+</body>
+</html>

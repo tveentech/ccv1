@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+
+{% block custom-title %}Coffee Castle | Activities{% endblock %}
+
+{% block pre-content %}
+
+	<div id="page-header" style="background:url(/static/images/example_image_06.png) no-repeat top center;">
+		<h2>Activities</h2>
+	</div>
+
+{% endblock %}
+
+{% block content %}
+
+<!-- BEGIN .main-content -->
+	<div class="main-content left-main-content">
+
+		<div class="event-entry clearfix" >
+			<div class="event-wrapper" >
+				<h3><strong>About Coorg</strong><h3><br>
+				<p>
+					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCoorg is surrounded by lush greenery which is guaranteed to leave you nostalgic. The pleasant climate and the hilly terrain inspired the British, who occupied the area for over hundred years, and called it the ‘’Scotland of India”. Coorg is replete with undulating meadows and pastures , so typical of the Western Ghats.<br><br>
+					<img src="http://www.peakadventuretour.com/blog/wp-content/uploads/2011/06/coorg-hill-station.jpg" width="615" height="410" ><br><br>
+&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspThe high altitude of Coorg offers a salubrious climate. Summer season is barely hot. The monsoon gets heavy rains that feed the Cauvery waters. Autumn season brings with it a cool climate and spring is a season when nature adorns itself in colourful flowers. Coorg is inhabited by tribes, the prominent being the Kurubas who make their living by collecting honey and also as elephant trainers.
+
+				</p>
+			</div>
+
+		</div>
+
+		{% for activity	in activities %}
+
+			<div class="event-entry clearfix">
+
+				<div class="event-wrapper">
+					<h3 class="event-title"><a href="events-single.html">{{ activity.title }}</a></h3>
+					<p>{{ activity.description }}</p>
+				</div>
+				<a href="events-single.html"><img src="{{ activity.get_poster }}" class="event-image" alt="" /></a>
+
+			</div>
+
+		{% endfor %}
+		<!-- <div class="event-entry clearfix">
+
+			<a href="events-single.html"><img src="/site_media/images/example_image_07.png" class="event-image" alt="" /></a>
+
+
+			<div class="event-wrapper">
+				<h3 class="event-title"><a href="events-single.html">Standard Event Post Typography</a></h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse feugiat neque vitae quam consectetur mattis. Nam consectetur pretium tortor sit amet fermentum.</p>
+			</div>
+
+		</div>
+
+		<div class="event-entry clearfix">
+
+			<a href="events-single.html"><img src="/site_media/images/example_image_07.png" class="event-image" alt="" /></a>
+
+
+			<div class="event-wrapper">
+				<h3 class="event-title"><a href="events-single.html">Standard Event Post Typography</a></h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse feugiat neque vitae quam consectetur mattis. Nam consectetur pretium tortor sit amet fermentum.</p>
+			</div>
+
+		</div>
+
+		<div class="event-entry clearfix">
+
+			<a href="events-single.html"><img src="/site_media/images/example_image_07.png" class="event-image" alt="" /></a>
+
+
+			<div class="event-wrapper">
+				<h3 class="event-title"><a href="events-single.html">Standard Event Post Typography</a></h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse feugiat neque vitae quam consectetur mattis. Nam consectetur pretium tortor sit amet fermentum.</p>
+			</div>
+
+		</div> -->
+
+		<hr class="space2" />
+
+	<!-- END .main-content -->
+	</div>
+
+	<!-- BEGIN .sidebar -->
+	<div class="sidebar right-sidebar">
+
+		<!-- BEGIN .widget -->
+		<div class="widget">
+
+			<h4 class="title-style3">Reservations<span class="title-block"></span></h4>
+
+			<!-- BEGIN .widget-reservation-box -->
+			<div class="widget-reservation-box">
+
+				<form role='form' class="booking-form" id="availabilityform" action="{% url 'availability' %}" method="POST">
+						{% csrf_token %}
+		<!-- 					<div class="room-price-widget">
+								<p class="from">Room From</p>
+								<h3 class="price">Rs.{{ room_detail.room_rate }}/.</h3>
+								<p class="price-detail">Per Night</p>
+							</div> -->
+
+							<input type="text" id="name" name="name" placeholder="Name:" style="color:#111111" required>
+							<input type="text" id="phone" name="phone" placeholder="Phone No:" style="color:#111111" required>
+							<input type="email" id="email" name="email" placeholder="Email ID:" style="color:#111111" required >
+							<input type="text" id="checkin" name="checkin" placeholder="Check In" class="datepicker" style="color:#111111" required>
+							<input type="text" id="checkout" name="checkout" placeholder="Check Out" class="datepicker" style="color:#111111" required>
+							<textarea rows="4" cols="22" id="message" name="message" Placeholder="Please leave a detailed message"></textarea>
+
+							<!-- <div class="select-wrapper">
+								<select id="adults" name="book_room_adults">
+									<option value="none">Adults</option>
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+							</div>
+
+							<div class="select-wrapper">
+								<select id="children" class="styled" name="book_room_children">
+									<option value="none">Children</option>
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+							</div> -->
+
+							<input id="availability-submit" class="bookbutton" type="submit" value="Check Availability" />
+
+						</form>
+
+			<!-- END .widget-reservation-box -->
+			</div>
+
+		<!-- END .widget -->
+		</div>
+
+		<!-- BEGIN .widget -->
+		<div class="widget">
+
+			<h4 class="title-style3">Activities<span class="title-block"></span></h4>
+
+			<ul>
+			{% for activity	in activities %}
+				<li><a href="javascript:;">{{ activity.title }}</a></li>
+			{% endfor %}
+			</ul>
+
+		<!-- END .widget -->
+		</div>
+
+
+	<!-- END .sidebar -->
+	</div>
+	<script type="text/javascript" src="/site_media/js/jquery-1.9.1.js"></script>
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			$('ul#navigation li').removeClass('current-menu-item current_page_item');
+			$('ul#navigation li#activities').addClass('current-menu-item current_page_item');
+		});
+		$('#availabilityform').submit(function(event) {
+			event.preventDefault();
+			var form = $('#availabilityform');
+			var url = form.attr( "action" );
+			$('#availability-submit').prop("disabled", true);
+			$.ajax({
+				type: 'POST',
+				url: url,
+				dataType: 'json',
+				data: form.serialize(),
+				success: function ( result ) {
+					if ( result ) {
+						alert('We received your booking request. We will get back to you soon!');
+						$('#availability-submit').prop("disabled", false);
+						$('#availabilityform')[0].reset();
+					}
+					else {
+						alert('There was a problem with the data entered. Please check');
+						$('#availability-submit').prop("disabled", false);
+					}
+				}
+			});
+		});
+	</script>
+
+{% endblock %}
