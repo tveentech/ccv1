@@ -36,7 +36,10 @@
 					<h3 class="event-title"><a href="events-single.html">{{ activity.title }}</a></h3>
 					<p>{{ activity.description }}</p>
 				</div>
-				<a href="events-single.html"><img src="{{ activity.get_poster }}" class="event-image" alt="" /></a>
+
+				{% for poster in activity.get_posters %}
+				<a href="events-single.html"><img src="{{ poster }}" class="event-image" alt="" /></a>
+				{% endfor %}
 
 			</div>
 

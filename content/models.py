@@ -127,13 +127,13 @@ class Activity( models.Model ):
 	def __unicode__( self ):
 		return u'%s' % ( self.title )
 
-	def get_poster( self ):
-		poster = []
+	def get_posters( self ):
+		posters = []
 
 		if self.poster:
-			poster = self.poster.split()
+			posters = self.poster.split()
 
-		return poster[0]
+		return posters
 
 # signals.post_save.connect( send_mail_admin, sender = Booking )
 # signals.post_save.connect( send_mail_admin, sender = Enquiry )
